@@ -11,6 +11,7 @@ let nombreC3 = "3: Cabaña3" +"\n";
 let precioC1 = 1000;
 let precioC2 = 2000;
 let precioC3 = 2500;
+let costoCabanaSeleccionada = ""
 
 let nombre = prompt("Bienvenido, Usted ingresó al area de reservas de Domos. Ingrese su nombre") +"\n";
 alert ("Hola" + " " + nombre) 
@@ -20,12 +21,15 @@ let operacion = prompt(`${nombre} "Las cabañas que se encuentran disponible en 
 function cabanaSeleccionada (cabana1, cabana2, cabana3, operacion) {
     switch (operacion) {
         case "1":
+            costoCabanaSeleccionada += precioC1
             return cabana1 + "\n" + "El precio por día es:" +  "\n" + precioC1;
             break;
         case "2":
+            costoCabanaSeleccionada += precioC2
             return cabana2 + "\n" + "El precio por día es:" +  "\n" + precioC2;
             break;
         case "3":
+            costoCabanaSeleccionada += precioC3
             return cabana3 + "\n" + "El precio por día es:" +  "\n" + precioC3;
             break;
         default:
@@ -46,10 +50,12 @@ while (confirmacion === "n" || confirmacion === "N") {
     alert("Ya casi terminamos")
 }
 
-// Acá la idea es pedir cantidad de personas y dias y poder delvover por alert el total, pero no se como llamar, o donde alojar la variable con el precio de la cabaña que eligieron
+// Acá la idea es pedir cantidad de personas y dias y poder delvover por alert el total, pero no se como llamar, o donde alojar la variable con el precio de la cabaña que eligieron. Lo solucioné agregando una variable costoCabanaSeleccionada en el switch, en el que eligen la cabaña y lo use para multiplicar, por huespedes y fecha, en una variable resultado. 
 
 let huespedes = Number(prompt("Ingrese la cantidad de personas"));
 let fecha = Number(prompt("Ingrese cuantos días se va a hospedar"));
+resultado = huespedes * fecha * costoCabanaSeleccionada
+alert ("El valor total de su estadia es de:" + " " + resultado);
 
 confirmacion = prompt("Ingrese S si esta de acuerdo o N si no lo esta")
 
