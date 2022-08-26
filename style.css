@@ -1,0 +1,13 @@
+body{
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+h1{
+    color: blue;
+    text-shadow: 0.1rem 0.1rem aqua;
+    font-size: 5rem;
+}
