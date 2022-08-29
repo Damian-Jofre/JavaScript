@@ -76,8 +76,7 @@ function confirmacionFinal(){
     } if(confirmacion === "s" || confirmacion === "S"){
         alert (`Perfecto, ${nombre} nos contactaremos a la brevedad para confirmar su pago`)
     } else {
-        alert ("Bue")
-        confirmacion = prompt("Solo podes ingresar S o N, s para confirmar que todo esta bien, n para volver a cargar tus datos")
+        confirmacion = prompt("Solo podes ingresar S o N \n S para confirmar que todo esta bien \n N para volver a cargar tus datos")
         confirmacionFinal()
     }
 }
