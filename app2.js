@@ -1,41 +1,93 @@
 /* El proyecto es para tomar reservas en un complejo de cabañas */
 
-//Funciones
-// Intente poner los while dentro de las funciones, me pareció tener mas sentido así, pero cuando lo hago me tira errores, con las declaraciones de las variables
+// Funciones
 
-function saludo(nombre){
-    alert ("Hola" + " " + nombre) 
+function saludo(){
+    alert ("Hola" + " " + nombre); 
 }
 
-function cabanaSeleccionada (cabana1, cabana2, cabana3, operacion) {
-    switch (operacion) {
-        case "1":
-            costoCabanaSeleccionada += precioC1
-            return cabana1 + "\n" + "El precio por día es:" +  "\n" + precioC1;
-            break;
-        case "2":
-            costoCabanaSeleccionada += precioC2
-            return cabana2 + "\n" + "El precio por día es:" +  "\n" + precioC2;
-            break;
-        case "3":
-            costoCabanaSeleccionada += precioC3
-            return cabana3 + "\n" + "El precio por día es:" +  "\n" + precioC3;
-            break;
-        default:
-            return "El número que ingreso no se encuentra disponible";
-            break;
+function seleccionCabana(){
+    if (operacion === 1){
+        costoCabanaSeleccionada += precioC1
+        alert (cabana1 + "\n" + "El precio por día es:" +  "\n" + precioC1);
+    }else if (operacion === 2){
+        costoCabanaSeleccionada += precioC2
+        alert (cabana2 + "\n" + "El precio por día es:" +  "\n" + precioC2);
+    }else if (operacion === 3){
+        costoCabanaSeleccionada += precioC3
+        alert (cabana3 + "\n" + "El precio por día es:" +  "\n" + precioC3);
+    } else {
+            alert ("El valor ingresado no es correcto \n Volvamos a empezar")
+            operacion = Number (prompt(`${nombre} "Las cabañas que se encuentran disponible en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`));
+            seleccionCabana(); 
+        } 
+}
+
+function confirmacionCabana (){
+    while (confirmacion === "n" || confirmacion === "N") {
+        alert("volvamos a empezar");
+        operacion = Number (prompt(`${nombre} "Las cabañas que se encuentran disponible en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`));
+        seleccionCabana(); 
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
+    } if (confirmacion === "s" || confirmacion === "S") {
+        alert("Ya casi terminamos")
+    } else {
+        alert("La opción elegida no es valida.\n Las opciones son:\n S para continuar, o N, para volver a elegir cabaña");
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
+        confirmacionCabana()
     }
 }
 
-function datos(apellido, dni, tel, mail) {
-    alert(`Corrobore si sus datos son correctos: \n Nombre: ${nombre} Apellido: ${apellido} Documento: ${dni} Teléfono: ${tel} E-mail: ${mail}`);
+function reserva(){
+    while(isNaN (huespedes) || isNaN (fecha)){
+        alert ("Ingrese solo números")
+        huespedes = Number(prompt("Ingrese la cantidad de personas en numeros, ejemplo: 2"));
+        fecha = Number(prompt("Ingrese cuantos días se va a hospedar en numeros, ejemplo: 3"));
+        resultado = huespedes * fecha * costoCabanaSeleccionada
+    }  alert (`El valor total de su estadia es de: ${resultado}`);
 }
 
-function reserva(resultado){
-    alert (`El valor total de su estadia es de: ${resultado}`);
+function confirmacionHuespedes(){
+    while (confirmacion === "n" || confirmacion === "N"){
+        alert("vamos de nuevo");
+        huespedes = Number(prompt("Ingrese la cantidad de personas"));
+        fecha = Number(prompt("Ingrese cuantos días se va a hospedar"));
+        resultado = huespedes * fecha * costoCabanaSeleccionada
+        alert (`El valor total de su estadia es de: ${resultado}`)
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
+    } if(confirmacion === "s" || confirmacion === "S"){
+        alert ("Perfecto, vamos a tomar sus datos para la reserva")
+    } else {
+        alert("La opción elegida no es valida.\n Las opciones son:\n S para continuar, o N para volver a cargar los datos");
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
+        confirmacionHuespedes()
+    }
 }
 
-//Algunas de estas variables son fijas, pero si les pongo const, no me funcionan
+function confirmacionFinal(){
+    while (confirmacion === "n" || confirmacion === "N"){
+        alert("Le volveremos a pedir sus datos");
+        apellido = prompt("ingrese su apellido");
+        dni = prompt("ingrese su documento");
+        tel = prompt("ingrese un telefono donde lo podamos contactar");
+        mail = prompt("ingrese su mail");
+        datos()
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
+    } if(confirmacion === "s" || confirmacion === "S"){
+        alert (`Perfecto, ${nombre} nos contactaremos a la brevedad para confirmar su pago`)
+    } else {
+        alert ("Bue")
+        confirmacion = prompt("Solo podes ingresar S o N, s para confirmar que todo esta bien, n para volver a cargar tus datos")
+        confirmacionFinal()
+    }
+}
+
+function datos() {
+    alert(`Corrobore si sus datos son correctos: \n Nombre: ${nombre} ${apellido} \n Documento: ${dni} \n Teléfono: ${tel} \n E-mail: ${mail}`); 
+}
+
+// Variables 
+// Las variables las pense así, por si quiero en algún momento cambiar el nombre de las cabañas,los precios, o sus caracteristicas. 
 
 let cabana1 = "Cabaña 1" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama Queen, balcón con desayunador, Netflix";
 let cabana2 = "Cabaña 2" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama King, balcón con desayunador, Netflix";
@@ -47,63 +99,38 @@ let precioC1 = 1000;
 let precioC2 = 2000;
 let precioC3 = 2500;
 let costoCabanaSeleccionada = "";
-let nombre = prompt("Bienvenido, Usted ingresó al area de reservas de Domos. Ingrese su nombre") +"\n";
- 
-// Programa
+
+/* Programa */
+
+let nombre = prompt("Bienvenido \n Usted ingresó al area de reservas de Domos. Ingrese su nombre");
 
 saludo(nombre)
 
-operacion = prompt(`${nombre} "Las cabañas que se encuentran disponible en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`);
+let operacion = Number (prompt(`${nombre} \n "Las cabañas que se encuentran disponibles en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`));
 
-alert(cabanaSeleccionada(cabana1, cabana2, cabana3, operacion))
+seleccionCabana()
 
 confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
 
-while (confirmacion === "n" || confirmacion === "N") {
-    alert("volvamos a empezar");
-    operacion = prompt(`${nombre} "Las cabañas que se encuentran disponible en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`);
-    alert(cabanaSeleccionada(cabana1, cabana2, cabana3, operacion)); 
-    confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
-} if (confirmacion === "s" || confirmacion === "S") {
-    alert("Ya casi terminamos")
-}    
-
-// Acá la idea es pedir cantidad de personas y dias y poder delvover por alert el total, pero no se como llamar, o donde alojar la variable con el precio de la cabaña que eligieron. Lo solucioné agregando una variable costoCabanaSeleccionada en el switch, en el que eligen la cabaña y lo use para multiplicar, por huespedes y fecha, en una variable resultado. 
+confirmacionCabana()
 
 let huespedes = Number(prompt("Ingrese la cantidad de personas"));
 let fecha = Number(prompt("Ingrese cuantos días se va a hospedar"));
 let resultado = huespedes * fecha * costoCabanaSeleccionada
 
-reserva(resultado)
+reserva()
 
 confirmacion = prompt("Ingrese S si esta de acuerdo o N si no lo esta")
 
-while (confirmacion === "n" || confirmacion === "N") {
-    alert("vamos de nuevo");
-    let huespedes = Number(prompt("Ingrese la cantidad de personas"));
-    let fecha = Number(prompt("Ingrese cuantos días se va a hospedar"));
-    confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
-} if (confirmacion === "s" || confirmacion === "S") {
-    alert ("Perfecto, vamos a tomar sus datos para la reserva")
-}
+confirmacionHuespedes()
 
-let apellido = prompt("ingrese su apellido") +"\n";
-let dni = prompt("ingrese su documento") +"\n";
-let tel = prompt("ingrese un telefono donde lo podamos contactar") +"\n";
-let mail = prompt("ingrese su mail") +"\n";
+let apellido = prompt("ingrese su apellido");
+let dni = prompt("ingrese su documento");
+let tel = prompt("ingrese un telefono donde lo podamos contactar");
+let mail = prompt("ingrese su mail");
 
-datos(apellido, dni, tel, mail); 
+datos()
 
 confirmacion = prompt("Ingrese S si sus datos son correctos o N si no lo son")
 
-while (confirmacion === "n" || confirmacion === "N") {
-    alert("Le pediremos de nuevo sus datos");
-    let apellido = prompt("ingrese su apellido") +"\n";
-    let dni = prompt("ingrese su documento") +"\n";
-    let tel = prompt("ingrese un telefono donde lo podamos contactar") +"\n";
-    let mail = prompt("ingrese su mail") +"\n";
-    datos (apellido, dni, tel, mail); 
-    confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo")
-} if (confirmacion === "s" || confirmacion === "S") {
-    alert (`Perfecto, ${nombre} nos contactaremos a la brevedad para confirmar su pago`)
-}
+confirmacionFinal()
