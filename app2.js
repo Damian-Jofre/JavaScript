@@ -51,7 +51,6 @@ function corroboroCabana (){
 }
 
 function soloValoresAceptadosCabana (){
-    alert ("Empezamos joya, prestá atención a lo que dice el puto cartelito");
     alert("salvo que seas un gato que salto sobre el teclado, o tocas s para continuar, o tocas n, para volver a elegir cabaña");
     confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo");
     confirmacionCabana();
