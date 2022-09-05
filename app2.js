@@ -1,8 +1,3 @@
-/* El proyecto es para tomar reservas en un complejo de cabañas */
-
-// Variables 
-// Las variables las pense así, por si quiero en algún momento cambiar el nombre de las cabañas,los precios, o sus caracteristicas. 
-
 let cabana1 = "Cabaña 1" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama Queen, balcón con desayunador, Netflix";
 let cabana2 = "Cabaña 2" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama King, balcón con desayunador, Netflix";
 let cabana3 = "Cabaña 3" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama Queen, un sofa cama, balcón con desayunador, Netflix";
@@ -14,7 +9,6 @@ let precioC2 = 2000;
 let precioC3 = 2500;
 let costoCabanaSeleccionada = "";
 let contador = 0;
-
 
 // Funciones
 
@@ -131,13 +125,12 @@ function datosHuespedes() {
             alert ("Para continuar por favor ingrese su mail");
             mail = prompt("Ingresar mail");
         }
-        datosReserva.push(new datosPasajeros(nombre, apellido, dni, telefono, mail));
+        datosReserva.push(new datosPasajeros(contador, nombre, apellido, dni, telefono, mail));
     } while (cantidadPasajeros != contador);
 console.log (datosReserva);
-alert (datosReserva); //Acá es donde me devuelve [object Object]
 }
 
-function soloValoresAceptadosFinal (){
+function soloValoresAceptadosFinal(){
     contador = 0;
     confirmacion = prompt("Solo podes ingresar S o N \n S para confirmar que todo esta bien \n N para volver a cargar tus datos");
     confirmacionFinal();
@@ -155,10 +148,20 @@ function confirmacionFinal(){
     }
 }
 
+// Agregué esta función para solucionar el problema de no poder mostrar por consola. El problema que tengo acá es que solo me toma el último número del contador, pero en consola lo toma bien. 
+function mostrarDatosHuespedes(){
+    datosReserva.forEach((datosPasajeros) => {
+        alert (`Estos son los datos del ${contador} \nCorrobore si los datos de ${datosPasajeros.nombre} son correctos \nApellido:${datosPasajeros.apellido} \nDNI:${datosPasajeros.dni} \nTelefono:${datosPasajeros.telefono} \nMail:${datosPasajeros.mail}`)
+        }
+    )
+}
+ 
+
 // Objetos
 
 class datosPasajeros {
-    constructor(nombre, apellido, dni, telefono, mail)  { 
+    constructor(contador, nombre, apellido, dni, telefono, mail)  { 
+        this.contador = parseFloat(contador)
         this.nombre = nombre.toUpperCase();
         this.apellido = apellido.toUpperCase();
         this.dni = parseFloat(dni);
@@ -195,7 +198,8 @@ datosHuespedes()
 
 // Me gustaría poder mostrar los datos cargados para pedir confirmación de si son correctos, pero no puedo mostrarlos por alert, me devuelve [object Object], solo lo puedo mostrar por consola
 
+mostrarDatosHuespedes();
+
 confirmacion = prompt("Ingrese S si sus datos son correctos o N si no lo son");
 
 confirmacionFinal()
-
