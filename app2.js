@@ -148,10 +148,9 @@ function confirmacionFinal(){
     }
 }
 
-// Agregué esta función para solucionar el problema de no poder mostrar por consola. El problema que tengo acá es que solo me toma el último número del contador, pero en consola lo toma bien. 
 function mostrarDatosHuespedes(){
     datosReserva.forEach((datosPasajeros) => {
-        alert (`Estos son los datos del ${contador} \nCorrobore si los datos de ${datosPasajeros.nombre} son correctos \nApellido:${datosPasajeros.apellido} \nDNI:${datosPasajeros.dni} \nTelefono:${datosPasajeros.telefono} \nMail:${datosPasajeros.mail}`)
+        alert (`Corrobore si los datos de ${datosPasajeros.nombre} son correctos \nApellido:${datosPasajeros.apellido} \nDNI:${datosPasajeros.dni} \nTelefono:${datosPasajeros.telefono} \nMail:${datosPasajeros.mail}`)
         }
     )
 }
@@ -161,11 +160,11 @@ function mostrarDatosHuespedes(){
 
 class datosPasajeros {
     constructor(contador, nombre, apellido, dni, telefono, mail)  { 
-        this.contador = parseFloat(contador)
+        this.contador = parseInt(contador)
         this.nombre = nombre.toUpperCase();
         this.apellido = apellido.toUpperCase();
-        this.dni = parseFloat(dni);
-        this.telefono = parseFloat(telefono);
+        this.dni = parseInt(dni);
+        this.telefono = parseInt(telefono);
         this.mail = mail;
     }
 }
@@ -195,8 +194,6 @@ confirmacion = prompt("Ingrese S si esta de acuerdo o N si no lo esta");
 confirmacionHuespedes()
 
 datosHuespedes()
-
-// Me gustaría poder mostrar los datos cargados para pedir confirmación de si son correctos, pero no puedo mostrarlos por alert, me devuelve [object Object], solo lo puedo mostrar por consola
 
 mostrarDatosHuespedes();
 
