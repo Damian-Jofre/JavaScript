@@ -1,10 +1,4 @@
-let cabana1 = "Cabaña 1" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama Queen, balcón con desayunador, Netflix";
-let cabana2 = "Cabaña 2" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama King, balcón con desayunador, Netflix";
-let cabana3 = "Cabaña 3" + "\n" + "Esta cabaña cuenta con:" + "\n" + "Cama Queen, un sofa cama, balcón con desayunador, Netflix";
-let nombreC1 = "1: Cabaña1";
-let nombreC2 = "2: Cabaña2";
-let nombreC3 = "3: Cabaña3";
-let contador = 0;
+// Como me pediste, saqué todas las variables que estaban acá y las metí en un array. Me falta ordenar el código como me sugeris. Voy a intentar hacer ahora con DOM, para la proxima entrega.
 
 // Arrays
 
@@ -12,17 +6,18 @@ const datosCabanas = [
     {
     nombre: "Cabaña1",
     precio: 2000,
-    promocion: true
+    promocion: true,
+
     },
     {
     nombre: "Cabaña2",
     precio: 3000,
-    promocion: false
+    promocion: false,
     },
     {
     nombre: "Cabaña3",
     precio: 4000,
-    promocion: true
+    promocion: true,
     },
 ];
 
@@ -30,100 +25,69 @@ const actividades = [
     {
         nombre: "Yoga",
         precio: 1500,
+        promocion: false,
     },
     {
         nombre: "Yoga Nidra",
         precio: 2000,
-        promocion: true
+        promocion: true,
     },
     {
         nombre: "Meditación",
         precio: 1500,
+        promocion: false,
     }
 ];
 
-const infoHuespedes = [
-];
+const infoHuespedes = [];
+
+const promociones = [];
 
 // Funciones
 
-function ingreso(){
-    infoHuespedes.nombre = prompt("Ingrese su nombre")
+// Saludo y Opciones de ingreso
+
+function ingreso(nombre){
+    nombre = prompt("Ingrese su nombre")
+    infoHuespedes.push(nombre)
 }
 
 function saludo(){
-    opcion = prompt (`Bienvenido ${infoHuespedes.nombre} \nQue quiere realizar \n1-Realizar Reservas \n2-Ver Actividades \n3-Ver Promociones \n4-Salir \nTenga en cuenta que solo puede ingresar números del 1 al 4, para seguir adelante o terminar`)
+    opcion = prompt (`Bienvenido ${infoHuespedes[0]} \nQue quiere realizar \n1-Realizar Reservas \n2-Ver Actividades \n3-Ver Promociones \n4-Salir \nTenga en cuenta que solo puede ingresar números del 1 al 4, para seguir adelante o terminar`)
 }
 
-// Bucle 
+// Eleccón Reserva
 
-function bucle (){
-    if (opcion == "1"){
-        cabanas();
-        tempo();
-        operacion = prompt(`${infoHuespedes.nombre} \n "Las cabañas que se encuentran disponibles en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`);
-        seleccionCabana();
-        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo");
-        confirmacionCabana();
-        reserva();
-        confirmacion = prompt("Ingrese S si esta de acuerdo o N si no lo esta");
-        confirmacionHuespedes();
-        datosHuespedes();
-        confirmacion = prompt("Ingrese S si sus datos son correctos o N si no lo son");
-        confirmacionFinal();
-    }
-    if (opcion == "2"){
-        alert ("Actividades");
-        saludosActividades();
-    }
-    if (opcion == "3"){
-        alert ("Acá puede ver nuestras ofertas y promociones")
-        ofertas ()
-        buscar();
-    }
-    opcion = prompt (`${infoHuespedes.nombre} \nQuiere consultar algo mas: \n1-Realizar Reservas \n2-Ver Actividades \n3-Ver Promociones \n4-Salir \nTenga en cuenta que solo puede ingresar números del 1 al 4, para seguir adelante o terminar`)
-}
-
-// Eleccion Reserva
-
-function cabanas(){
+function seleccionTemporada(){
     temporada = prompt ("Nuestros precios depende de la tempordad, elija una opción: \n1-temporada alta \n2-temporada baja")
     while (isNaN (temporada) || temporada > 2 || temporada == 0){
         temporada = prompt ("La opción no es válida elija de nuevo: \n1-temporada alta \n2-temporada baja")
     }
 }
 
-function temporadaAlta(){
-    datosCabanas.forEach((e) =>{
-        alta = e.precio * 2
-        console.log(e.nombre + " " + alta)
-    }) 
-}    
 
-
-function tempo(){
+function tempo(precioAlta){
     if(temporada == "1"){
-        alert ("Alta")
-        temporadaAlta();
-    } 
-    if(temporada == "2"){
-        alert ("Baja")
-        datosCabanas.forEach(e=> {
-            console.log(e.nombre + " " + e.precio)
-        })
-    }    
+        for (var i =0; i < datosCabanas.length; i++){
+            precioAlta = datosCabanas[i].precio * 2 
+            datosCabanas[i].precio = precioAlta
+        }
+    }  
 }
 
 function seleccionCabana () {
     switch (operacion) {
         case "1":
-            alert (cabana1);
+            alert (`Cabaña: ${datosCabanas[0].nombre}  Precio: ${datosCabanas[0].precio}`);
+            total = datosCabanas[0].precio
             break;
         case "2":
-            alert (cabana2);
+            alert (`Cabaña: ${datosCabanas[1].nombre}  Precio: ${datosCabanas[1].precio}`);
+            total = datosCabanas[1].precio
             break;
         case "3":
-            alert (cabana3);
+            alert (`Cabaña: ${datosCabanas[2].nombre}  Precio: ${datosCabanas[2].precio}`);
+            total = datosCabanas[2].precio
             break;
         default:
             corroboroCabana();
@@ -132,14 +96,14 @@ function seleccionCabana () {
 
 function corroboroCabana (){
     alert ("El valor ingresado no es correcto \nVolvamos a empezar");
-    operacion = prompt(`${infoHuespedes.nombre} \n Las cabañas que se encuentran disponibles en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`);
+    operacion = prompt(`${infoHuespedes[0]} \nLas cabañas que se encuentran disponibles en este momento son: \n1-${datosCabanas[0].nombre} Precio: ${datosCabanas[0].precio} \n2-${datosCabanas[1].nombre} Precio: ${datosCabanas[1].precio} \n3-${datosCabanas[2].nombre} Precio: ${datosCabanas[2].precio} \nPor favor ingrese el número de la cabaña que Usted desea reservar`);
     seleccionCabana(); 
 }
 
 function confirmacionCabana (){
     while (confirmacion === "n" || confirmacion === "N" ) {
         alert("volvamos a empezar");
-        operacion = prompt(`${infoHuespedes.nombre} \n Las cabañas que se encuentran disponibles en este momento son: \n ${nombreC1} \n ${nombreC2} \n ${nombreC3} \n Por favor ingrese el número de la cabaña que Usted desea reservar`);
+        operacion = prompt(`${infoHuespedes[0]} \nLas cabañas que se encuentran disponibles en este momento son: \n1-${datosCabanas[0].nombre} Precio: ${datosCabanas[0].precio} \n2-${datosCabanas[1].nombre} Precio: ${datosCabanas[1].precio} \n3-${datosCabanas[2].nombre} Precio: ${datosCabanas[2].precio} \nPor favor ingrese el número de la cabaña que Usted desea reservar`);
         seleccionCabana(); 
         confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo");
     } if (confirmacion === "s" || confirmacion === "S") {
@@ -166,7 +130,8 @@ function reserva (){
         alert ("Para continuar por favor ingrese el número de la cantidad de días que se van a alojar, el minímo es: 3");
         fecha = prompt("Ingrese cuantos días se va a hospedar en numeros, ejemplo: 3");
     };
-    alert ("La cantidad de Huespedes es de:" + " " + cantidadPasajeros + "\nLa cantidad de días que se van a alojar es de:" + " " + fecha)
+    aPagar = total * cantidadPasajeros * fecha;
+    alert ("La cantidad de Huespedes es de:" + " " + cantidadPasajeros + "\nLa cantidad de días que se van a alojar es de:" + " " + fecha + "\nEl monto total de su reserva es de:" + " " + aPagar)
 }
 
 function soloValoresAceptadosHuespedes (){
@@ -187,38 +152,38 @@ function confirmacionHuespedes(){
     }
 }
 
-function datosHuespedes() {
+function cargaDatosHuespedes() {
+    contador = 0;
     do{
         contador++
         alert ("Vamos a ingresar los datos del" + " " + contador + " " + "pasajero");
-        let nombre = prompt("Ingresar nombre");
+        nombre = prompt("Ingresar nombre");
         while (nombre.length == 0) {
             alert ("Para continuar por favor ingrese su nombre");
             nombre = prompt("Ingresar nombre");
         }
-        let apellido = prompt("Ingresar apellido");
+        apellido = prompt("Ingresar apellido");
         while (apellido.length == 0) {
             alert ("Para continuar por favor ingrese su apellido");
             apellido = prompt("Ingresar apellido");
         }
-        let dni = prompt("Ingresar dni"); 
+        dni = prompt("Ingresar dni"); 
         while (dni.length == 0 || isNaN (dni)) {
             alert ("Para continuar por favor ingrese su DNI, ingrese solo números. Ej: 23456789");
             dni = prompt("Ingresar dni");
         }
-        let telefono = prompt("Ingresar telefono");
+        telefono = prompt("Ingresar telefono");
         while (telefono.length == 0 || isNaN (telefono)) {
             alert ("Para continuar por favor ingrese su telefono, sin guiones ni puntos. Ej. 1145842567");
             telefono = prompt("Ingresar telefono");
         }
-        let mail = prompt("Ingresar mail");
+        mail = prompt("Ingresar mail");
         while (mail.length == 0) {
             alert ("Para continuar por favor ingrese su mail");
             mail = prompt("Ingresar mail");
         }
-        infoHuespedes.push(contador, nombre, apellido, dni, telefono, mail);
+        infoHuespedes.push({contador, nombre, apellido, dni, telefono, mail});
     } while (cantidadPasajeros != contador);
-console.log (infoHuespedes);
 }
 
 function soloValoresAceptadosFinal(){
@@ -229,46 +194,68 @@ function soloValoresAceptadosFinal(){
 
 function confirmacionFinal(){
     while (confirmacion === "n" || confirmacion === "N"){
-        contador = 0;
         datosHuespedes()
         confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo");
     } if(confirmacion === "s" || confirmacion === "S"){
-        alert (`${infoHuespedes.nombre} \nPronto nos contactaremos con Ud. para confirmar su reserva.`)
+        alert (`${infoHuespedes[0]} \nPronto nos contactaremos con Ud. para confirmar su reserva.`)
     } else {
         soloValoresAceptadosFinal();
     }
 }
 
-// Seleccion Promociones
+function reseteo (temporada){
+    infoHuespedes.splice(1, infoHuespedes.length);
+    if(temporada == "1"){
+        for (var i =0; i < datosCabanas.length; i++){
+            precioAlta = datosCabanas[i].precio / 2 
+            datosCabanas[i].precio = precioAlta
+        }
+    }
+}  
+
+// PROMOCIONES Y OFERTAS
 
 function ofertasYActividades (){
-    alert ("A continuación podra ver las ofertas y promociones del mes")
+    ofertaPromo = prompt ("A continuación podra ver las ofertas y promociones del mes. \nIngrese \n1-para Ofertas \n2-para Promociones \n3-para volver al menú anterior")
 }
 
 function ofertas (){
-    resultado = datosCabanas.filter((e) => e.precio < 3000); 
-    console.log("Las ofertas del mes son:")
-    console.log (resultado)
+    alert ("Ofertas")
+    precioOferta = (datosCabanas.filter((e)=> e.precio < 3000));
+    for (var i =0; i < precioOferta.length; i++){
+        alert (`Nuestra cabaña: ${datosCabanas[i].nombre} se encuentra en oferta a un precio de: ${precioOferta[i].precio} por noche`)
+    }
 }
 
 function buscar (){
-    let filtrado = datosCabanas.find((e)=>e.promocion === true);
-    filtrado = actividades.find((e)=>e.promocion === true);
-    console.log(filtrado) 
-}
-
-// Actividades
-
-function saludosActividades () {
-    alert ("En este area podra ver la lista de nuestras actividades")
-    console.log(actividades)
+    alert ("Promociones")
+    for (var i =0; i < promociones.length; i++){
+        alert (`${infoHuespedes[0]} alquilando cualquiera de nuetras cabañas por mas de 3 noches accedé a un descuento del 50% en clases de: ${actividades[i].nombre} con un precio final de ${precioA} por clase.`);
+    }
 } 
 
+function buscaPromo (){
+    promoA = (actividades.find((e)=>e.promocion === true));
+    promociones.push(promoA)
+    for (var i =0; i < promociones.length; i++){
+        precioA = promociones[i].precio / 2
+    }
+}
+
+// ACTIVIDADES
+
+function saludosActividades () {
+    alert ("En este area podra ver la lista de nuestras actividades (por consola)")
+    console.log(actividades)
+} 
 // Salir
 
 function salir (){
-    alert (`${infoHuespedes.nombre}, gracias por su visita. \nLo esperamos pronto`)
+    alert (`${infoHuespedes[0]}, gracias por su visita. \nLo esperamos pronto`)
 }
+
+// Esta funcion solo hacen cálculos para el resto del código
+buscaPromo();
 
 // Programa
 
@@ -276,7 +263,49 @@ ingreso();
 saludo();
 
 while (opcion !=="4"){
-    bucle();
+    if (opcion == "1"){
+        // COMIENZA RESERVA
+        seleccionTemporada();
+        tempo();
+        operacion = prompt(`${infoHuespedes[0]} \n Las cabañas que se encuentran disponibles en este momento son: \n1-${datosCabanas[0].nombre} Precio: ${datosCabanas[0].precio} \n2-${datosCabanas[1].nombre} Precio: ${datosCabanas[1].precio} \n3-${datosCabanas[2].nombre} Precio: ${datosCabanas[2].precio} \nPor favor ingrese el número de la cabaña que Usted desea reservar`);
+        seleccionCabana();
+        confirmacion = prompt("Ingrese S para aceptar o N para elegir de nuevo");
+        confirmacionCabana();
+        reserva();
+        confirmacion = prompt("Ingrese S si esta de acuerdo o N si no lo esta");
+        confirmacionHuespedes();
+        cargaDatosHuespedes();
+        for (var i =1; i < infoHuespedes.length; i++){
+            alert (`Nombre: ${infoHuespedes[i].nombre} \nApellido: ${infoHuespedes[i].apellido} \nTélefono: ${infoHuespedes[i].telefono} \nDNI: ${infoHuespedes[i].dni} \nMail: ${infoHuespedes[i].mail}`);
+        }
+        confirmacion = prompt("Ingrese S si sus datos son correctos o N si no lo son");
+        confirmacionFinal();
+        reseteo (temporada);
+    }
+    if (opcion == "2"){
+        // ACTIVIDADES
+        alert ("Actividades");
+        saludosActividades();
+    }
+    if (opcion == "3"){
+        // PROMOCIONES Y OFERTAS
+            ofertasYActividades ();
+            while (ofertaPromo !=="3"){
+                if (ofertaPromo == "1"){
+                    ofertas ();
+                    break;
+                }
+                if (ofertaPromo == "2"){
+                    buscar();
+                    break;
+                }
+                else {
+                    ofertaPromo = prompt ("\nPor favor ingrese \n1-para Ofertas \n2-para Promociones \n3-para volver al menú anterior")
+                }
+            }
+    }
+    opcion = prompt (`${infoHuespedes[0]} \nQuiere consultar algo mas: \n1-Realizar Reservas \n2-Ver Actividades \n3-Ver Promociones \n4-Salir \nTenga en cuenta que solo puede ingresar números del 1 al 4, para seguir adelante o terminar`)
+    
 }
 
 salir();
