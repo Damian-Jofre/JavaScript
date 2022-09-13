@@ -8,9 +8,53 @@
     <title>Domos</title>
 </head>
 <body>
-    
-    <h1>Bienvenido a Domos</h1>
+    <main>
+        <section class="main__saludo">
+            <div>
+                <h1>RESERVAS</h1>
+            </div>
+        </section>
+        <section id="cabanas" class="main__cabanas">
+        </section>
+        <section class="main__section">
+            <section id="prueba" class="main__section__form">
+                <label for="">Nombre</label>
+                <input type="text"  id="nombre" placeholder="Carlos">
+                <label for="">Apellido</label>
+                <input type="text" id="apellido" placeholder="Gimenez">
+                <label for="">DNI</label>
+                <input type="number"   id="dni" placeholder="123456">
+                <label for="">Teléfono</label>
+                <input type="tel"   id="telefono" placeholder="123456">
+                <label for="">Mail</label>
+                <input type="email" id="mail" placeholder="ejemplo@ejemplo.com">
+                <label for="">Comentarios</label>
+                <textarea name="mensaje" id="comentarios"></textarea> 
+                <div class="huespedes">
+                    <label for="">Cantidad Huespedes</label>
+                    <input type="number" id="huespedes">
 
-    <script src="./app3.js"></script>
+                    <label for="">Cantidad Dias</label>
+                    <input type="number" id="dias">
+                </div>
+                <div class="botones">
+                    <button id="reset" type="reset">Borrar</button>
+                    <button id="boton">Enviar</button>
+                </div>
+            </section>
+        </section>
+        <section class="section__promos">
+            <div class="promo" id="promo">
+            </div>
+        </section>
+        <section class="section__total">
+            <div>
+                <h3>TOTAL:</h3> 
+            </div>
+            <div id="total" class="total">
+            </div>
+        </section>
+    </main>
+    <script src="./app4.js"></script>
 </body>
 </html>
