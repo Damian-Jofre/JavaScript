@@ -1,97 +1,152 @@
-body{
+*{
     margin: 0;
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas: 
-                        "main main" 
-;
+    padding: 0;
 }
 
-h1{
-    color: blue;
-    text-shadow: 0.1rem 0.1rem aqua;
-    font-size: 5rem;
+body{
+    background-color: burlywood;
 }
 
+/* HEADER */
 
-/*  MAIN */
+header{
+    height: 1em;
+}
+
+/* MAIN */
 
 main{
-    grid-area: main;
+    margin: 1em;
     display: grid;
-    grid-template-columns: 3fr 1fr;
-    grid-template-areas:"bienvenida bienvenida"
-                        "cabanas cabanas"
-                        "reservas promo"
-                        "total total";
+    grid-template-columns: 2fr 1fr 4fr;
+    grid-template:"reservas reservas reservas"
+                  "titulo titulo titulo"
+                  "domos domos domos"
+                  "datos mas promos"
+                  "total total total";
+    gap: 1em;
 }
 
-.main__saludo{
-    grid-area: bienvenida;
-    display: flex;
-    justify-content: center;
-}
-
-.main__cabanas{
-    grid-area: cabanas;
-    display: flex;
-    justify-content: space-around;
-    width: auto;
-}
-
-.main__section{
+.reservas{
     grid-area: reservas;
-    display: flex;
-    justify-content: space-between;
+    transition: 10s;
+    text-align: center;
 }
-
-.section__promos{
-    grid-area: promo;
+.titulo{
+    grid-area: titulo;
+    text-align: center;
+    background-color: brown;
+    border-radius: 1em;
 }
-
-.section__total{
-    grid-area: total;
-    display: flex;
-    justify-content: space-evenly;
-}
-
-/* Cabañas */
-
-.div__cabanas{
-    margin-top: 1em;
-    margin-bottom: 1em;
-    border: solid 1px black;
+.prueba2{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.imagenesCabanas{
-    width: 350px;
+.prueba2 div{
+    margin: 5em;
+} 
+
+/* DOMOS */
+
+.section__domos{
+    grid-area: domos;
+    background-color: brown;
+    border-radius: 1em;
+    text-align: center;
+    color: whitesmoke;
+    padding: 1em;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 
-/* FORM */
+img{
+    width: 350px;
+    margin: .5em;
+    border-radius: .5em;
+}
 
-.main__section__form{
-    border: solid 1px red;
-    padding: 2em;
-    margin: 2em;
-    grid-template-areas:"promo reservas ofertas";
+/* FORMULARIO */
+
+.section__form{
+    grid-area: datos;
+    background-color: brown;
+    border-radius: 1em;
+    text-align: center;
+    padding: 1em;
+}
+
+.form{
     display: flex;
     flex-direction: column;
 }
 
-.huespedes{
-    margin-top: 2em;
+.datos{
     display: flex;
+    flex-direction: column;
 }
 
-.botones{
-    margin-top: 2em;
-    display: flex;
-    justify-content: center;
-} 
+input{
+    margin: .5em;
+    border-radius: 5px;
+}
 
-.promo{
-    opacity: 0%;
-} 
+.huespedesDias{
+    display: flex;
+    justify-content: space-around;
+}
+
+/* MAS */
+
+.mas{
+    grid-area: mas;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: 2s;
+}
+
+.mas img{
+    width: 5rem;
+}
+
+/* PROMOS */
+
+.section__promos{
+    width: 35em;
+    grid-area: promos;
+    background-color: brown;
+    border-radius: 1em;
+    text-align: center;
+    padding: 1em;
+}
+
+.verPromos{
+    opacity: 0;
+    transition: 2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+/* Total */
+
+.section__total{
+    grid-area: total;
+    background-color: brown;
+    border-radius: 1em;
+    display: flex;
+    justify-content: space-around;
+    padding: 1em;
+}
+
+/* BOTONES */
+
+button{
+    border-radius: 1em;
+    padding: .3em;
+    background-color: black;
+    color: aliceblue;
+}
