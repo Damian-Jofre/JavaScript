@@ -28,32 +28,32 @@ const datosCabanas = [
 
 const actividades = [
     {
-        id: 1,
+        id: "checkbox1",
         nombre: "ACT1",
         precio: 1000,
-        checkbox: false,
     },
     {
-        id: 2,
+        id: "checkbox2",
         nombre: "ACT2",
         precio: 1500,
-        checkbox: false,
     },
     {
-        id: 3,
+        id: "checkbox3",
         nombre: "ACT3",
         precio: 2000,
-        checkbox: false,
     },
     {
-        id: 4,
+        id: "checkbox4",
         nombre: "ACT4",
         precio: 3000,
-        checkbox: false,
     },
 ];  
 
 const carrito = [];
+
+const datosHuespedes = [];
+
+// Toda esta primera parte que está comentada, es porque hice una pagina de bienvenida con un botón entrar (esto es porque quería hacer un par de cosas en ese inicio), pero me generan errores los botones, dejan de funcionar.
 
 /* const ingreso = () =>{
     let main = document.querySelector("#main")
@@ -148,7 +148,7 @@ const sumarCabana = () =>{
         document.getElementById(`${p.id}`).addEventListener(`click`, () => {
             let precioCabana = (p.precio)
             console.log(precioCabana)
-            carrito.push("Valor Cabaña:",precioCabana)
+            carrito.push(`${p.nombre} ${precioCabana}`)
             console.log(carrito)
         })
     })
@@ -177,6 +177,24 @@ dibujarPromos ();
 
 let formData;
 
+// FORMULARIO FECHAS
+
+document.addEventListener(`DOMContentLoaded`, () => {
+    document.getElementById(`formFecha`).addEventListener(`submit`, formControlFecha)
+})
+
+function formControlFecha(event) {
+    event.preventDefault()
+    let formularioFecha = event.target;
+    console.log(formularioFecha)
+    formData = new FormData(formularioFecha);
+    //formData get()
+    console.log(`${formData.get(`huespedes`)},  \n ${formData.get(`dias`)},`)
+    for (let keyValue of formData.entries()) {
+        console.log(`${keyValue[0]}, ${keyValue[1]}`)
+    }
+}
+
 // FORMULARIO DATOS HUESPEDES
 
 document.addEventListener(`DOMContentLoaded`, () => {
@@ -196,23 +214,8 @@ function formControl(event) {
     
     document.querySelector("#promos").style.opacity = "100%" 
     document.querySelector("#mas").style.opacity = "100%" 
+    subtotal(nombre);
 } 
-
-// FORMULARIO FECHAS
-
-document.addEventListener(`DOMContentLoaded`, () => {
-    document.getElementById(`formFecha`).addEventListener(`submit`, formControlFecha)
-})
-
-function formControlFecha(event) {
-    event.preventDefault()
-    let formularioFecha = event.target;
-    console.log(formularioFecha)
-    formData = new FormData(formularioFecha);
-    //formData get()
-    console.log(`${formData.get(`huespedes`)},  \n ${formData.get(`dias`)},`)
-
-}
 
 // ¿como hago para capturar el nombre del formulario y usarlo en otro lado?, por ejemplo en la función subtotal.
 
@@ -223,22 +226,26 @@ function subtotal(nombre, dias, usuario){
     huespedesFinal.appendChild(subtotal);
 } 
 
-// Acá abajo quise hacer lo mismo que hice arriba con el precio de las cabañas, nada mas que puse checkbox en lugar de botones pero no logro que funcione
+// Acá abajo hice algo parecido a los botones de las cabañas, lo que quiero hacer con todas las selecciones del usuario es poder armar una lista abajo, y que los valores de cada selección se vayan sumando en un total, y con eso tengo dudas
 
+// CHECKBOX
 
 const actividadesCheck = () =>{
-    actividades.forEach((p) => {
-        console.log(p.id)
-        document.getElementById(`${p.id}`).addEventListener(`change`, () => {
-            alert ("hola")
-        })
-    })
+    for (const actividad of actividades){
+        isChecked = document.getElementById(actividad.id).checked;
+        if(isChecked) {
+            carrito.push (actividad.precio)
+            let sumarCheck = document.querySelector(`#total`)
+            let check = document.createElement("div")
+            check.innerHTML = `Usted agrego ${actividad.nombre} por un valor de ${actividad.precio}` 
+            sumarCheck.appendChild(check)
+        }
+    }
+    console.log(carrito)
 }
 
-actividadesCheck();
+// Botón para verificar los checkbox
 
-const total = ()=>{
-    carrito.forEach((p)=> {
-
-    })
-}
+document.getElementById("btActividades").addEventListener(`click`, () => {
+    actividadesCheck();
+})
