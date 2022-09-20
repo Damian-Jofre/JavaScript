@@ -73,7 +73,7 @@ const dibujarDomos = ()=>{
     sumarCabana()
 }
 
-// Aca capturo el precio de la cabaña que fue seleccionada y lo mando a un array carrito, la idea es ir haciendo eso con todos los valores que vaya seleccionando el usuario, la duda que tengo es si esta bien identificado así como lo hice, para despues poder llamar cada valor por separado. Otra cosa que me gustaría hacer es que no puedan seleccionar mas de una cabaña a la vez.
+// Aca capturo el precio de la cabaña que fue seleccionada y lo mando a un array carrito, la idea es ir haciendo eso con todos los valores que vaya seleccionando el usuario, la duda que tengo es si esta bien identificado así como lo hice, para despues poder llamar cada valor por separado. Otra cosa que me gustaría hacer es que no puedan seleccionar mas de una cabaña a la vez. Si eligen una cabaña, no puedan elegir otra.
 
 let precioCabana = "";
 
@@ -100,9 +100,10 @@ const dibujarPromos = ()=>{
     actividades.forEach((p)=> {
         let actividad = document.createElement("div");
         actividad.classList.add("act");
-        actividad.innerHTML= `<label class="form-check-label"               for="check1">${p.nombre}
-                    </label>
-                    <input class="form-check-input" type="checkbox" value="" id="${p.id}" input="check">`;
+        actividad.innerHTML=`<label class="form-check-label" for="check1">
+                            ${p.nombre}
+                            </label>
+                            <input class="form-check-input" type="checkbox" value="" id="${p.id}" input="check">`;
         contenedor.appendChild(actividad)
     });
 } 
@@ -153,10 +154,10 @@ function formControl(event) {
     document.querySelector("#mas").style.opacity = "100%" 
 } 
 
-// ¿como hago para capturar el nombre del formulario y usarlo en otro lado?, por ejemplo en la función subtotal.
+// ¿como hago para capturar el nombre que ingreso el huesped del formulario y usarlo en otro lado?, por ejemplo en la función subtotal.
 
 
-// Acá abajo hice algo parecido a los botones de las cabañas, lo que quiero hacer con todas las selecciones del usuario es poder armar una lista abajo, y que los valores de cada selección se vayan sumando en un total, y con eso tengo dudas. Agregué un botón para poder hacer la suma, que no funciona bien. Pero en realidad lo que quiero es que cuando hagan check se sume y si lo sacan al check se reste.
+// Acá abajo hice algo parecido a los botones de las cabañas, solo que en esta parte van a aparecer actividades que pueden sumar a su estadia. Lo que quiero hacer con todas las selecciones del usuario es poder armar una lista abajo, y que los valores de cada selección se vayan sumando en un total, y con eso tengo dudas. Agregué un botón para poder hacer la suma, que no funciona bien, porque solo me toma el último valor. Pero en realidad lo que quiero es que cuando hagan check se sume y si lo sacan al check se reste. Y no que cada vez que toquen el boton agregar, se agregue siempre lo mismo.
 
 // CHECKBOX
 
@@ -184,7 +185,7 @@ document.getElementById("btActividades").addEventListener(`click`, () => {
     borrar()
 })
 
-// Botón para eliminar los productos - todavía no funciona
+// Botón para eliminar los productos - No se bien como hacer para que me elimine solo un producto específico.
 
 function borrar(){
     document.getElementById("btBorrarActividades").addEventListener(`click`, () => {
@@ -196,7 +197,7 @@ function borrar(){
     })
 }
 
-// Tengo que resolver aca para trabajar con los datos de lo que pushee.Por ahora trabajo con variables externas, la idea es poder trabajar con lo que se pushee a carrito.
+// Tengo que resolver aca para trabajar con los datos que pushee.Por ahora trabajo con variables externas, la idea es poder trabajar con lo que se pushee a carrito. Pero no se bien como acceder a datos específicos que se fueron pusheando, ya que no estan ordenados como en los arrays datosCabanas o actividades, que cada uno, tiene identificado el nombre, el precio, etc, en lo que pusheo, los datos estan sueltos.
 
 function total (){
     console.log(carrito)
