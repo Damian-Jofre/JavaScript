@@ -1,78 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script defer src="./JS/app.js"></script> -->
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>Document</title>
 </head>
+
 <body>
     <main id="main">
-        <section class="reservas">
-            <h1>RESERVAS</h1>
+        <section>
+            <section class="reservas">
+                <h1>RESERVAS</h1>
+            </section>
+            <div class="titulo">
+                <h3>NUESTROS DOMOS</h3>
+            </div>
+            <section id="domos" class="section__domos">
+            </section>
+            <div id="mensajeCabana">
+            </div>
         </section>
-        <div class="titulo">
-            <h3>NUESTROS DOMOS</h3>
-        </div>
-        <section id="domos" class="section__domos">
-        </section>
-        <div class="container">
+
+        <div class="container" id="forHuespedes">
             <div class="row">
                 <div class="col-4 section__form">
                     <h3>RESERVAS</h3>
-                    <div>
-                        <form id="formFecha" class="huespedesDias">
-                            <input type="number" id="huespedes" name="huespedes" placeholder="Huespedes">
-                            <input type="number" id="dias" name="dias" placeholder="dias">
-                            <button id="confirmarDias" type="submit">CONFIRMAR</button>
-                        </form>
-                    </div>
                     <div class="datos">
                         <h3>Datos Huespedes</h3>
-                        <form id="miForm" class="form">
-                            <input id="nombre" name="nombre" type="text" placeholder="Nombre">
-                            <input id="apellido" name="apellido" type="text" placeholder="Apellido">
-                            <input id="dni" name="dni" type="number" placeholder="DNI">
-                            <input id="tel" name="tel" type="tel" placeholder="Teléfono">
-                            <input id="mail" name="mail" type="email" placeholder="Mail">
+                        <form id="miForm" class="form row g-3">
+                            <div class="col-6">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre"
+                                    required>
+                            </div>
+                            <div class="col-6">
+                                <label for="apellido" class="form-label">Apellido</label>
+                                <input type="text" class="form-control" id="apellido" placeholder="Apellido"
+                                    name="apellido" required>
+                            </div>
+                            <div class="col-6">
+                                <label for="dni" class="form-label">DNI</label>
+                                <input type="number" class="form-control" id="dni" placeholder="DNI" name="dni"
+                                    required>
+                            </div>
+                            <div class="col-6">
+                                <label for="tel" class="form-label">TEL</label>
+                                <input type="tel" class="form-control" id="tel" placeholder="TELEFONO" name="tel"
+                                    required>
+                            </div>
+                            <div class="col-12">
+                                <label for="mail" class="form-label">MAIL</label>
+                                <input type="email" class="form-control" id="mail" placeholder="mail" name="mail"
+                                    required>
+                            </div>
                             <button id="confirmarReserva" type="submit">Confirmar Reserva</button>
                         </form>
-                    </div>
-                    <div>
                     </div>
                 </div>
                 <div id="mas" class="col-2 mas">
                     <img src="./img/log-mas.png" alt="">
                 </div>
-                <div class="col-6 section__promos">
-                    <h3>PROMOCIONES</h3>
-                    <div id="promos" class="verPromos">
+                <div class="col-6 section__promos verPromos" id="promosA">
+                    <h3>Actividades</h3>
+                    <div id="promos">
                     </div>
                     <button id="btActividades">Agregar</button>
                 </div>
             </div>
         </div>
         <section class="section__total">
-            <div id="subTotal">
+            <div id="subTotal" class="subTotal">
                 <h3>Subtotal</h3>
+                <div id="subTotalC">
 
+                </div>
             </div>
-            <div id="total">
+            <div id="total" class="total">
                 <h3>TOTAL</h3>
-                
+            </div>
+            <div>
+                <button id="btConfirmar">CONFIRMAR</button>
             </div>
         </section>
     </main>
-    <!-- BOOSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
-    <!-- JS -->
-    <script defer src="./appReserva.js"></script>
-</body>
-</html>
 
+    <!-- BOOSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
+    <!-- JS -->
+    <script defer src="./JS/appReserva.js"></script>
+</body>
+
+</html>

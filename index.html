@@ -1,43 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <script defer src="./JS/app.js"></script> -->
     <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- CSS -->
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <title>INICIO</title>
 </head>
+
 <body>
     <main id="mainInicio" class="main">
         <section class="mainInicio">
-            <div>
-                <h1>Usted está por ingresar al aera de reservas</h1>
-            </div>
-            <div>
-                <!-- <button id="btEntrar">ENTRAR</button> -->
+            <div class="centrartitulo">
+                <h1>Usted está por ingresar al área de reservas</h1>
             </div>
         </section>
         <section>
             <form id="formFecha" class="formFecha">
                 <h3>RESERVAS</h3>
                 <div>
-                    <form id="formFecha" class="huespedesDias">
-                        <input type="number" id="huespedes" name="huespedes" placeholder="Huespedes">
-                        <input type="number" id="dias" name="dias" placeholder="dias">
-                        <button id="confirmarDias" type="submit">CONFIRMAR</button>
+                    <form id="formFecha" class="huespedesDias row g-3">
+                        <div class="col-12">
+                            <label for="huespedes" class="form-label">Ingrese la cantidad de Huespedes</label>
+                            <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="huespedes"
+                                placeholder="huespedes" name="huespedes" required>
+                        </div>
+                        <div class="col-12">
+                            <label for="dias" class="form-label">Ingrese la cantidad de días</label>
+                            <input type="text" min="1" pattern="^[0-9]+" class="form-control" id="dias"
+                                placeholder="dias" name="dias" required>
+                        </div>
+                        <button id="confirmarDias" type="submit">ENTRAR</button>
                     </form>
                 </div>
             </form>
         </section>
     </main>
     <!-- BOOSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js" integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+    crossorigin="anonymous"></script>
     <!-- JS -->
-    <script defer src="./appInicio.js"></script>
+    <script defer src="./JS/appInicio.js"></script>
 </body>
+
 </html>
