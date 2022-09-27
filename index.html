@@ -2,54 +2,158 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- BOOTSTRAP -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <!-- CSS -->
-    <link rel="stylesheet" href="./CSS/style.css">
-    <title>INICIO</title>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- TOASTIFY -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css" />
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+  <!-- BOOTSTRAP -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="./CSS/style.css" />
+  <title>Document</title>
 </head>
 
 <body>
-    <main id="mainInicio" class="main">
-        <section class="mainInicio">
-            <div class="centrartitulo">
-                <h1>Usted está por ingresar al área de reservas</h1>
+  <header class="header">
+    <section class="section__header">
+      <nav class="navbar navbar-expand-lg bg-light bordersNav">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Subtotal
+                </a>
+                <ul class="dropdown-menu">
+                  <li>
+                    <div class="subcabanas">
+                      <h6>Cabaña:</h6>
+                      <div id="subTotalC">
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <hr class="dropdown-divider" />
+                  </li>
+                  <li>
+                    <div class="subAct">
+                      <h6>Actividades:</h6>
+                      <div id="subTotalA">
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <div class="contador" id="contador">
+                <p id="sumoContador">
+
+                </p>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </section>
+  </header>
+
+  <main id="alPrincipio">
+    <section>
+      <section class="row">
+        <div class="col-4 dibujoCabana" id="domos">
+        </div>
+        <div class="col-8 muestroCabana" id="muestroCabana">
+        </div>
+        <div class="borroCabana" id="borroCabana">
+        </div>
+      </section>
+    </section>
+
+    <section class="actividadesYFormuario">
+
+      <section>
+        <div class="actividades" id="actividades"></div>
+      </section>
+
+      <section class="formulario" id="formulario">
+        <div class="container" id="forHuespedes">
+          <div class="row div__form">
+            <div class="col-4 form2">
+              <h3>RESERVAS</h3>
+              <div class="datos">
+                <h3>Datos Huespedes</h3>
+                <form id="miForm" class="form row g-3">
+                  <div class="col-12">
+                    <label for="huespedes" class="form-label">Ingrese la cantidad de Huespedes (minimo 1, maximo 4)</label>
+                    <input type="number" min="1" max="4" pattern="^[0-9]+" class="form-control" id="huespedes"
+                      placeholder="huespedes" name="huespedes" required />
+                  </div>
+                  <div class="col-12">
+                    <label for="dias" class="form-label">Ingrese la cantidad de días (minimo 1, maximo 15)</label>
+                    <input type="number" min="1" max="15" pattern="^[0-9]+" class="form-control" id="dias" placeholder="dias"
+                      name="dias" required />
+                  </div>
+                  <div class="col-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="Nombre" name="nombre" required />
+                  </div>
+                  <div class="col-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" class="form-control" id="apellido" placeholder="Apellido" name="apellido"
+                      required />
+                  </div>
+                  <div class="col-6">
+                    <label for="dni" class="form-label">DNI</label>
+                    <input type="number" class="form-control" id="dni" placeholder="DNI" name="dni" required />
+                  </div>
+                  <div class="col-6">
+                    <label for="tel" class="form-label">TEL</label>
+                    <input type="tel" class="form-control" id="tel" placeholder="TELEFONO" name="tel" required />
+                  </div>
+                  <div class="col-12">
+                    <label for="mail" class="form-label">MAIL</label>
+                    <input type="email" class="form-control" id="mail" placeholder="mail" name="mail" required />
+                  </div>
+                  <div class="btnCR">
+                    <a href="#hastaFinal">
+                      <button id="confirmarReserva" type="submit">
+                        <a href="#hastaFinal"></a>
+                        Confirmar Reserva
+                      </button>
+                    </a>
+                  </div>
+                </form>
+              </div>
             </div>
-        </section>
-        <section>
-            <form id="formFecha" class="formFecha">
-                <h3>RESERVAS</h3>
-                <div>
-                    <form id="formFecha" class="huespedesDias row g-3">
-                        <div class="col-12">
-                            <label for="huespedes" class="form-label">Ingrese la cantidad de Huespedes</label>
-                            <input type="number" min="1" pattern="^[0-9]+" class="form-control" id="huespedes"
-                                placeholder="huespedes" name="huespedes" required>
-                        </div>
-                        <div class="col-12">
-                            <label for="dias" class="form-label">Ingrese la cantidad de días</label>
-                            <input type="text" min="1" pattern="^[0-9]+" class="form-control" id="dias"
-                                placeholder="dias" name="dias" required>
-                        </div>
-                        <button id="confirmarDias" type="submit">ENTRAR</button>
-                    </form>
-                </div>
-            </form>
-        </section>
-    </main>
-    <!-- BOOSTRAP -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+
+  <!-- BOOTSTRAP -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
     integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
     crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
     integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
     crossorigin="anonymous"></script>
-    <!-- JS -->
-    <script defer src="./JS/appInicio.js"></script>
+  <!-- TOASTIFY -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <!-- SWEETALERT2 -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.34/dist/sweetalert2.all.min.js"></script>
+  <!-- SCRIPT JS -->
+  <script src="./JS/app.js"></script>
 </body>
 
 </html>

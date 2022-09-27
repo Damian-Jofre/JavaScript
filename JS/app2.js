@@ -1,7 +1,3 @@
-//ARRAY
-
-const datosCierre = [];
-
 function cierre(){
     nombre = localStorage.getItem(`nombre`)
     apellido = localStorage.getItem(`apellido`)
@@ -10,7 +6,6 @@ function cierre(){
     mail = localStorage.getItem(`mail`)
     cantidadDias = localStorage.getItem(`Dias`)
     cantidadHuespedes = localStorage.getItem(`Huespedes`)
-    console.log(datosCierre)
     let cierre = document.querySelector(`#cierre`)
     let cierreF = document.createElement("div")
     cierreF.className = ("cierre")
@@ -29,10 +24,10 @@ function cierre(){
 
 cierre();
 
-function finalizar(){
-    window.location.assign("./index.html")
-} 
-
 setTimeout(function(){
     finalizar();
 }, 3000);
+
+function finalizar(){
+    window.location.assign("./index.html")
+} 

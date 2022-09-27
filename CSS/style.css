@@ -1,203 +1,247 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
 body{
-    background-color: burlywood;
+    background-color:goldenrod;
 }
 
-/* INDEX HTML */
+/* HEADER */
 
-.centrartitulo{
+.header{
+    display: flex;
+    justify-content: end;
+}
+
+.section__header{
+    position: fixed;
+}
+
+.contador{
+    margin: .5rem;
     text-align: center;
+    background-color: blueviolet;
+    border-radius: 2rem;
+    width: 2rem;
+    height: 2rem;
 }
 
-/* MAIN INICIO */
+.contador p{
+    padding: .2rem;
+}
 
-.main{
-    height: 80vh;
+.subcabanas{
+    padding: 1rem;
+}
+
+.subAct{
+    padding: 1rem;
+}
+
+.bordersNav{
+    border-radius: 1rem;
+}
+
+/* DIBUJO DOMOS */
+
+.dibujoCabana{
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
 }
 
-.formFecha{
+.domitos{
     text-align: center;
+    width: 20rem;
+    height: 15rem;
+}  
+
+.nombreC{
+    margin: .5rem;
 }
 
-.mainInicio{
+.img{
     display: flex;
-    justify-content: center;
 }
 
-.inicio{
-    width: fit-content;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.img img{
+    margin: .5rem;
+    width: 80%;
+    border-radius: 1rem;
 }
 
-.inicio div{
-    margin: 5em;
-} 
-
-/* RESERVA HTML */
-
-/* MAIN RESERVAS*/
-
-main{
-    margin: 1em;
-    display: grid;
-    grid-template-columns: 2fr 1fr 4fr;
-    grid-template:"reservas reservas reservas"
-                  "titulo titulo titulo"
-                  "domos domos domos"
-                  "row row row"
-                  "total total total";
-}
-
-.reservas{
-    grid-area: reservas;
-    transition: 10s;
-    text-align: center;
-}
-.titulo{
-    grid-area: titulo;
-    text-align: center;
-    background-color: brown;
-    border-radius: 1em;
-}
-
-/* DOMOS */
-
-.section__domos{
-    grid-area: domos;
-    background-color: brown;
-    border-radius: 1em;
-    text-align: center;
-    color: whitesmoke;
-    padding: 1em;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-}
-
-img{
-    width: 300px;
-    margin: .5em;
-    border-radius: .5em;
-}
-
-/* FORMULARIO */
-
-.section__form{
-    background-color: brown;
-    border-radius: 1em;
-    text-align: center;
-    padding: 1em;
-}
-
-input{
-    margin: .5em;
-    border-radius: 5px;
-}
-
-.huespedesDias{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* MAS */
-
-.mas{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: 2s;
-}
-
-.mas img{
+.btC{
+    background-color: dodgerblue;
+    border-radius: .5rem;
+    margin: .5rem;
     width: 5rem;
 }
 
-/* PROMOS */
+.btC2{
+    background-color: green;
+    border-radius: .5rem;
+    margin: .5rem;
+    width: 5rem;
+    
+}
 
-.section__promos{
-    background-color: brown;
-    border-radius: 1em;
+/* Dibujo Domos*/
+
+.muestroCabana{
     text-align: center;
-    padding: 1em;
+}
+
+.dibujoC{
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    align-items: center;
+    margin: 5rem;
+}
+
+.textoD{
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+}
+
+.btnElijoCabana{
+    padding: 1rem;
+    background-color: dodgerblue;
+    color: black;
+    border-radius: .5rem;
+}
+
+.flechaAbajo{
+    display: flex;
+    justify-content: center;
+}
+
+.borroCabana{
+    margin: 2rem;
+    display: flex;
+    justify-content: center;
+}
+
+.borrarC{
+    text-decoration: none;
+    color: black;
+    background-color: blueviolet;
+    border-radius: .5rem;
+    padding: .5rem;
+    margin: .5rem;
+}
+
+/* ACTIVIDADES Y FORMULARIO */
+
+.actividadesYFormuario{
+    display: flex;
+}
+
+/* ACTIVIDADES */
+
+.dibujoBtAct{
+    display: flex;
+}
+
+.btnAct{
+    margin: .2rem;
+    color: black;
+    text-decoration: none;
+    background-color: rgb(0, 230, 0);
+    border: solid 2px black;
+    border-radius: .5rem;
+    padding: .2rem;
+}
+
+.btnReset{
+    margin: .2rem;
+    color: black;
+    text-decoration: none;
+    background-color: rgb(0, 230, 0);
+    border: solid 2px black;
+    border-radius: .5rem;
+    padding: .2rem;
+}
+
+.actividades{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 
-.verPromos{
+.act{
+    width: 20rem;
+    padding: .3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    font-weight: bold;
+    background-color: gray;
+    border-radius: 1rem;
+    border: solid 1px yellow;
+}
+
+/* FORMULARIOS */
+
+.formulario{
     opacity: 0;
-    transition: 2s;
+} 
+
+.div__form{
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
 }
 
-/* SubTotal */
-
-.subTotal{
-    display: flex;
-    flex-direction: column;
-}
-
-/* Total */
-
-.section__total{
-    grid-area: total;
+.form2{
+    width: 70%;
+    text-align: center;
+    border-radius: 1rem;
     background-color: brown;
-    border-radius: 1em;
-    display: flex;
-    justify-content: space-around;
-    padding: 1em;
+}
+
+.btnCR button{
+    width: 10rem; 
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: aqua;
+}
+
+/* SUBTOTAL */
+
+.sectionSubtotal{
+    position: fixed;
+    background-color: antiquewhite;
+    border: solid 1px red;
+}
+
+/* TOTAL */
+
+.sectionTotal{
+    background-color: antiquewhite;
 }
 
 .total{
+    margin-left: 1rem;
+}
+
+.divT{
     display: flex;
-}
-
-.total button{
-    margin-left: 5rem;
-}
-
-/* BOTONES */
-
-button{
-    width: fit-content;
-    border-radius: 1em;
-    padding: .3em;
-    background-color: black;
-    color: aliceblue;
-}
-
-.container{
-    grid-area: row;
-    margin-top: .5em;
-    margin-bottom: .5em;
-}
-
-/* CIERRE HTML*/
-
-.chau{
-    width: 100vw;
-    background-color: blue;
-}
-
-.cierre{
-    display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
+.totalFinal{
+    font-size: 1rem;
+    font-weight: bold;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.btConfirmar{
+    padding: .5rem;
+    background-color: blueviolet;
+    border-radius: .5rem;
+    color: aliceblue;
+}
