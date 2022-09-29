@@ -1,3 +1,7 @@
+//LUXON
+const {DateTime} = luxon;
+const at = DateTime.now().toLocaleString(DateTime.DATETIME_MED);
+
 function cierre(){
     nombre = localStorage.getItem(`nombre`)
     apellido = localStorage.getItem(`apellido`)
@@ -8,8 +12,9 @@ function cierre(){
     cantidadHuespedes = localStorage.getItem(`Huespedes`)
     let cierre = document.querySelector(`#cierre`)
     let cierreF = document.createElement("div")
-    cierreF.className = ("cierre")
+    cierreF.className = ("textoCierre")
     cierreF.innerHTML = `<h1>Reserva Confirmada</h1>
+    <h4>Usted confirmo la reserva el: ${at}</h4> 
     <h4>Los datos de su reserva son:</h4>
     <p>Nombre: ${nombre} <br>
     Apellido: ${apellido} <br>

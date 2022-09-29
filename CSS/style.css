@@ -245,3 +245,15 @@ body{
     border-radius: .5rem;
     color: aliceblue;
 }
+
+/* CIERRE */
+
+.cierre{
+    display: flex;
+    justify-content: center;
+}
+
+.textoCierre{
+    margin: 2rem;
+    text-align: start;
+}
