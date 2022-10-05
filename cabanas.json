@@ -1,0 +1,25 @@
+[
+    {
+        "id": 1,
+        "nombre": "Domo Aguatibay",
+        "precio": 2000,
+        "caracteristicas": "Jacuzzi<br><i class=bi bi-wifi> WIFI</i><br><i class=bi bi-tv> Netflix</i>",
+        "imagen": "./img/domo1.png"
+    },
+
+   {
+        "id": 2,
+        "nombre": "Domo Molle",
+        "precio": 3000,
+        "caracteristicas": "Netflix, Jacuzzi",
+        "imagen": "./img/domo2.png"
+    },
+
+    {
+        "id": 3,
+        "nombre": "Domo Algarrobo Negro",
+        "precio": 4000,
+        "caracteristicas": "Netflix, Jacuzzi",
+        "imagen": "./img/domo3.png"
+    }
+]

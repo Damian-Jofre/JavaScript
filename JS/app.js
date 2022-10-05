@@ -1,29 +1,5 @@
 // ARRAYS
 
-const datosCabanas = [
-    {
-        id: 1,
-        nombre: "Domo Aguatibay",
-        precio: 2000,
-        caracteristicas: `Jacuzzi<br><i class="bi bi-wifi"> WIFI</i><br><i class="bi bi-tv"> Netflix</i>`,
-        imagen: "./img/domo1.png",
-    },
-    {
-        id: 2,
-        nombre: "Domo Molle",
-        precio: 3000,
-        caracteristicas: "Netflix, Jacuzzi",
-        imagen: "./img/domo2.png",
-    },
-    {
-        id: 3,
-        nombre: "Domo Algarrobo Negro",
-        precio: 4000,
-        caracteristicas: "Netflix, Jacuzzi",
-        imagen: "./img/domo3.png",
-    },
-];  
-
 const actividades = [
     {
         id: "checkbox1",
@@ -56,49 +32,57 @@ const datosHuespedes = [];
 // DOMOS
 
 const dibujarDomos = ()=>{
-    let contenedor = document.querySelector
-    ("#domos");
-    datosCabanas.forEach((producto)=> {
-        let cabana = document.createElement("div");
-        cabana.classList.add("domitos");
-        cabana.innerHTML=`<h5 class="nombreC">${producto.nombre}</h5>
-                        <div class="img">
-                            <img src="${producto.imagen}" alt="">
-                            <button class="btC" id="${producto.id}"><i class="bi bi-arrow-right"></i></button>
-                        </div>`;
-        contenedor.appendChild(cabana)
-    });
-}
+    fetch('./cabanas.json')
+    .then(response => response.json()) 
+    .then(datosCabanas => {
+        let contenedor = document.querySelector
+        ("#domos");
+        datosCabanas.forEach((producto)=> {
+            let cabana = document.createElement("div");
+            cabana.classList.add("domitos");
+            cabana.innerHTML=`<h5 class="nombreC">${producto.nombre}</h5>
+                            <div class="img">
+                                <img src="${producto.imagen}" alt="">
+                                <button class="btC" id="${producto.id}"><i class="bi bi-arrow-right"></i></button>
+                            </div>`;
+            contenedor.appendChild(cabana)
+        });
+    })
+};
 
 dibujarDomos();
 
 function muestroDomo (){
-    for (const cabanas of datosCabanas){
-        let contenedorC = document.querySelector
-        ("#muestroCabana");
-        document.getElementById(`${cabanas.id}`).addEventListener(`click`, () => {
-            cambioColor(cabanas);
-            contenedorC = document.querySelector
+    fetch('./cabanas.json')
+    .then(response => response.json()) 
+    .then(datosCabanas => {
+        for (const cabanas of datosCabanas){
+            let contenedorC = document.querySelector
             ("#muestroCabana");
-            contenedorC.innerHTML = ``
-            contenedorC.appendChild
-            let domo = document.createElement("div");
-            domo.classList.add("dibujoC");
-            domo.innerHTML=   `<h2>${cabanas.nombre}</h2>
-                                <img src="${cabanas.imagen}" alt="">
-                                <div class="textoD">
-                                    <p>La cabaña cuenta con: ${cabanas.caracteristicas}</p>
-                                    <p>Precio por noche :${cabanas.precio}</p>
-                                </div>
-                                <a href="#hastaAct" id="elijoC" type="button" class="btnElijoCabana">ELEGIR</a>
-                                <div class="flechaAbajo">
-                                    <i class="bi bi-arrow-down"></i>
-                                </div>`;
-            contenedorC.appendChild(domo)
-            ingresar(cabanas)
-        })
-    } 
-}
+            document.getElementById(`${cabanas.id}`).addEventListener(`click`, () => {
+                cambioColor(cabanas);
+                contenedorC = document.querySelector
+                ("#muestroCabana");
+                contenedorC.innerHTML = ``
+                contenedorC.appendChild
+                let domo = document.createElement("div");
+                domo.classList.add("dibujoC");
+                domo.innerHTML=   `<h2>${cabanas.nombre}</h2>
+                                    <img src="${cabanas.imagen}" alt="">
+                                    <div class="textoD">
+                                        <p>La cabaña cuenta con: ${cabanas.caracteristicas}</p>
+                                        <p>Precio por noche :${cabanas.precio}</p>
+                                    </div>
+                                    <a href="#hastaAct" id="elijoC" type="button" class="btnElijoCabana">ELEGIR</a>
+                                    <div class="flechaAbajo">
+                                        <i class="bi bi-arrow-down"></i>
+                                    </div>`;
+                contenedorC.appendChild(domo)
+                ingresar(cabanas)
+            })
+        } 
+    })
+};
 
 muestroDomo ()
 
@@ -257,6 +241,15 @@ document.addEventListener(`DOMContentLoaded`, () => {
 function formControl(event) {
     event.preventDefault()
     formData = new FormData(event.target);
+    //EMALIS JS
+    emailjs.init('jZ0VkErDGABBwPeXv')
+    this.numeroContacto.value = Math.random() * 100000 | 0;
+    emailjs.sendForm('contactoServicio', 'contactoFormulario', this)
+        .then(function() {
+            console.log('Enviado!');
+            }, function(error) {
+            console.log('Falló el envio...', error);
+            }); 
     localStorage.setItem("Huespedes", JSON.stringify(cantidadHuespedes = Number(formData.get(`huespedes`))));
     localStorage.setItem("Dias", JSON.stringify(cantidadDias = Number(formData.get(`dias`))));
     localStorage.setItem("nombre", JSON.stringify(formData.get("nombre")));
@@ -281,7 +274,6 @@ function formControl(event) {
     console.log(diasCabana)
     dibujarTotal ();
 } 
-
 
 // SUBTOTAL
 
