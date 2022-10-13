@@ -8,7 +8,7 @@ function cierre(){
     dni = localStorage.getItem(`dni`)
     tel = localStorage.getItem(`tel`)
     mail = localStorage.getItem(`mail`)
-    cantidadDias = localStorage.getItem(`Dias`)
+    cantidadDias = localStorage.getItem(`Resultado`)
     cantidadHuespedes = localStorage.getItem(`Huespedes`)
     let cierre = document.querySelector(`#cierre`)
     let cierreF = document.createElement("div")

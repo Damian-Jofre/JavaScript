@@ -27,64 +27,86 @@ const carrito = [];
 
 const carritoCabana = [];
 
-const datosHuespedes = [];
+// BIENVENIDA
+
+function ingresoDomos() {
+    document.getElementById(`entrar`).addEventListener(`click`, () => {
+        document.querySelector("#header").style.opacity = "100%"
+        dibujarDomos();
+        muestroDomo ()
+    })
+}
+
+ingresoDomos();
 
 // DOMOS
 
 const dibujarDomos = ()=>{
     fetch('./cabanas.json')
     .then(response => response.json()) 
-    .then(datosCabanas => {
+    .then(json => {
+        let borro = document.querySelector("#bienvenida")
+        borro.innerHTML=``
         let contenedor = document.querySelector
         ("#domos");
-        datosCabanas.forEach((producto)=> {
+        contenedor.innerHTML=``
+        json.forEach((producto)=> {
             let cabana = document.createElement("div");
             cabana.classList.add("domitos");
             cabana.innerHTML=`<h5 class="nombreC">${producto.nombre}</h5>
                             <div class="img">
                                 <img src="${producto.imagen}" alt="">
-                                <button class="btC" id="${producto.id}"><i class="bi bi-arrow-right"></i></button>
+                                <button class="btn btn-light" id="${producto.id}"><i class="bi bi-arrow-right"></i></button>
                             </div>`;
             contenedor.appendChild(cabana)
-        });
-    })
+        });  
+    }) 
+    .catch(()=>{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Encontramos un problema al cargar los datos de la página.',
+            showDenyButton: false,
+            showCancelButton: false,
+            confirmButtonText: 'aca',
+            denyButtonText: `Don't save`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire('<a href="./index.html">Haz click en el enlace para intentar solucionarlo</a>')
+            }
+        })
+    }) 
 };
-
-dibujarDomos();
 
 function muestroDomo (){
     fetch('./cabanas.json')
     .then(response => response.json()) 
-    .then(datosCabanas => {
-        for (const cabanas of datosCabanas){
+    .then(json => {
+        for (const cabanas of json){
             let contenedorC = document.querySelector
-            ("#muestroCabana");
+            ("#muestroDomo");
             document.getElementById(`${cabanas.id}`).addEventListener(`click`, () => {
-                cambioColor(cabanas);
                 contenedorC = document.querySelector
-                ("#muestroCabana");
+                ("#muestroDomo");
                 contenedorC.innerHTML = ``
                 contenedorC.appendChild
                 let domo = document.createElement("div");
                 domo.classList.add("dibujoC");
-                domo.innerHTML=   `<h2>${cabanas.nombre}</h2>
+                domo.innerHTML= `<div>
+                                    <h2 class="tituloD">${cabanas.nombre}</h2>
                                     <img src="${cabanas.imagen}" alt="">
-                                    <div class="textoD">
-                                        <p>La cabaña cuenta con: ${cabanas.caracteristicas}</p>
-                                        <p>Precio por noche :${cabanas.precio}</p>
-                                    </div>
+                                </div>
+                                <div class="textoD">
+                                    <p>La cabaña cuenta con: ${cabanas.caracteristicas}</p>
+                                    <p>Precio por noche :${cabanas.precio}</p>
                                     <a href="#hastaAct" id="elijoC" type="button" class="btnElijoCabana">ELEGIR</a>
-                                    <div class="flechaAbajo">
-                                        <i class="bi bi-arrow-down"></i>
-                                    </div>`;
+                                </div>`;
                 contenedorC.appendChild(domo)
                 ingresar(cabanas)
             })
         } 
     })
-};
-
-muestroDomo ()
+}
 
 function ingresar(cabanas) {
     document.getElementById(`elijoC`).addEventListener(`click`, () => {
@@ -105,7 +127,7 @@ function agregoCabanaCarrito(cabanas){
     contador();
 }
 
-const soloUnaCabana = () => Toastify({text: "Solo puede elegir una cabaña para su reserva", duration: 3000}).showToast(); 
+const soloUnaCabana = () => Toastify({text: "Solo puede elegir una cabaña para su reserva",position: `center`, duration: 3000}).showToast(); 
 
 function dibujoBorrarCabana(){
     let BorroCc = document.querySelector
@@ -147,8 +169,6 @@ function contador(){
     contador.appendChild 
 }
 
-const cambioColor = (cabanas) => prueba = document.getElementById(`${cabanas.id}`).classList.toggle(`btC2`)
-
 // ACTIVIDADES
 
 const dibujarActividades = ()=>{
@@ -156,7 +176,7 @@ const dibujarActividades = ()=>{
     contenedor.innerHTML=`<h3>¿Quisiera sumar a su estadía alguna de estas actividades?</h3>
                         <h6>los pasen duran 1 mes y son personales</h6>
                         <div class="dibujoBtAct">
-                            <a href="#hastaFinal" id="btActividades" class="btnAct" type="button"">Agregar</a>
+                            <a href="#hastaFinal" id="btActividades" class="btnAct" type="button"">Continuar</a>
                             <button type="reset" class="btnReset" id="btnReset">Eliminar</button>
                         </div>
                         <div id="hastaAct">
@@ -186,7 +206,6 @@ const actividadesCheck = () =>{
                 text: 'Debe seleccionar un Domo para continuar!',
               })
         } else {
-
             if (carrito.length !==0) {
                 Swal.fire({
                     icon: 'error',
@@ -231,14 +250,14 @@ function borrarAct(){
 
 // FORMULARIO
 
-let cantidadDias = "";
-let formData;
+const {DateTime} = luxon;
+const at =  Date.parse (DateTime.now().toFormat('yyyy-LL-dd').toLocaleString(DateTime.DATE_SHORT));
 
 document.addEventListener(`DOMContentLoaded`, () => {
-    document.getElementById(`miForm`).addEventListener(`submit`, formControl)
+    document.getElementById(`miForm`).addEventListener(`submit`, validarFormulario)
 }) 
 
-function formControl(event) {
+function validarFormulario(event) {
     event.preventDefault()
     formData = new FormData(event.target);
     //EMALIS JS
@@ -247,33 +266,41 @@ function formControl(event) {
     emailjs.sendForm('contactoServicio', 'contactoFormulario', this)
         .then(function() {
             console.log('Enviado!');
-            }, function(error) {
+        }, function(error) {
             console.log('Falló el envio...', error);
             }); 
+    //HUESPEDES
+    localStorage.setItem("Ingreso", JSON.stringify (checkIn = Date.parse (formData.get("checkIn"))));  
+    if(checkIn<at){
+        Swal.fire('Algo esta mal con su fecha de ingreso, compruebe que no sea menor al día actual')
+        return
+    }
+    localStorage.setItem("Egreso", JSON.stringify (checkOut = Date.parse (formData.get("checkOut")))); 
+    if(checkOut<checkIn){
+        Swal.fire('Algo esta mal con su fecha de egreso, compruebe que no sea menor a su fecha de ingreso')
+        return
+    }
+    cuenta = checkOut - checkIn 
+    resultado = (((cuenta/1000)/60)/60)/24
+    if(resultado>15){
+        Swal.fire('Las reservas son máximo por 15 días, por favor seleccione el tiempo de estadia correcto')
+        return
+    }
+    localStorage.setItem("Resultado", JSON.stringify (resultado))
     localStorage.setItem("Huespedes", JSON.stringify(cantidadHuespedes = Number(formData.get(`huespedes`))));
-    localStorage.setItem("Dias", JSON.stringify(cantidadDias = Number(formData.get(`dias`))));
     localStorage.setItem("nombre", JSON.stringify(formData.get("nombre")));
     localStorage.setItem("apellido", JSON.stringify(formData.get("apellido")));
     localStorage.setItem("dni", JSON.stringify(formData.get("dni")));
     localStorage.setItem("tel", JSON.stringify(formData.get("tel")));
     localStorage.setItem("mail", JSON.stringify(formData.get("mail")));
-    //formData Entries
-    for (let keyValue of formData.entries()) {
-        console.log(`${keyValue[0]}: ${keyValue[1]}`)
-        datosHuespedes.push(`${keyValue[0]}, ${keyValue[1]}`)
-    }
-    console.log(datosHuespedes);
-    const huespedesStr = JSON.stringify(datosHuespedes)
-    localStorage.setItem("datos", huespedesStr)
-    sessionStorage.setItem("Datos", huespedesStr)
-    cantidadDias = localStorage.getItem(`Dias`)
-    console.log(cantidadDias)
+    cantidadDias = localStorage.getItem(`Resultado`)
     for (p of carritoCabana){
         diasCabana = cantidadDias * p.precio
     }
-    console.log(diasCabana)
-    dibujarTotal ();
+    total ();
 } 
+
+
 
 // SUBTOTAL
 
@@ -296,27 +323,26 @@ const subTotalActividades = () =>{
 
 // TOTAL
 
-const dibujarTotal = ()=>{
-    total();
-}
-
-
-let diasCabana = 0
-
 const total = () =>{
-    let suma = 0
+    let suma = 0 
     for (const p of carrito){
         suma = suma + p.precio
     }
     totalFinal = diasCabana + suma 
     const carritoStr = JSON.stringify(carrito)
     localStorage.setItem("carrito", carritoStr)
-    Swal.fire({
-        icon: 'success',
-        title: 'Su reserva fué exitosa',
-        titleText: `Su total es de:`,
-        text: totalFinal, 
-        footer: '<a href="./cierre.html">Imprima su Check-In</a>'
-    })
+    for (p of carritoCabana){
+        Swal.fire({
+            icon: 'success',
+            title: 'Su reserva fué exitosa',
+            titleText: `Su total es de:`,
+            text: totalFinal, 
+            imageUrl: p.imagen,
+            imageWidth: 400,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            footer: '<a href="./cierre.html">Imprima su Check-In</a>'
+        })
+    }
 }
 
