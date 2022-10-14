@@ -174,7 +174,6 @@ function contador(){
 const dibujarActividades = ()=>{
     let contenedor = document.querySelector("#actividades");
     contenedor.innerHTML=`<h3>¿Quisiera sumar a su estadía alguna de estas actividades?</h3>
-                        <h6>los pasen duran 1 mes y son personales</h6>
                         <div class="dibujoBtAct">
                             <a href="#hastaFinal" id="btActividades" class="btnAct" type="button"">Continuar</a>
                             <button type="reset" class="btnReset" id="btnReset">Eliminar</button>
@@ -340,7 +339,10 @@ const total = () =>{
             imageUrl: p.imagen,
             imageWidth: 400,
             imageHeight: 200,
-            imageAlt: 'Custom image',
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            allowEscapeKey: false,
+            imageAlt: 'Imagen Domo',
             footer: '<a href="./cierre.html">Imprima su Check-In</a>'
         })
     }
